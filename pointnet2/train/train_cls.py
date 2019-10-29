@@ -18,6 +18,7 @@ import os.path as osp
 import os
 import argparse
 
+
 from pointnet2.models import Pointnet2ClsMSG as Pointnet
 from pointnet2.models.pointnet2_msg_cls import model_fn_decorator
 from pointnet2.data import ModelNet40Cls

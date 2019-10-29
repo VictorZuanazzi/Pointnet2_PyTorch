@@ -15,6 +15,7 @@ import shutil
 import tqdm
 from scipy.stats import t as student_t
 import statistics as stats
+from torch.utils.tensorboard import SummaryWriter
 
 
 if False:
@@ -649,6 +650,7 @@ class Trainer(object):
         bnm_scheduler=None,
         eval_frequency=-1,
         viz=None,
+        log_name=None
     ):
         self.model, self.model_fn, self.optimizer, self.lr_scheduler, self.bnm_scheduler = (
             model,
@@ -663,6 +665,11 @@ class Trainer(object):
 
         self.training_best, self.eval_best = {}, {}
         self.viz = viz
+        if log_name is not None:
+            self.writer = SummaryWriter(log_name)
+        else:
+            self.writer = SummaryWriter()
+
 
     @staticmethod
     def _decode_value(v):
@@ -765,6 +772,11 @@ class Trainer(object):
                     pbar.update()
                     pbar.set_postfix(dict(total_it=it))
                     tbar.refresh()
+
+                    print(f"res: {type(res)} :: {res}")
+                    # self.writer.add_scalar(tag='train_acc',
+                    #                        scalar_value=res,
+                    #                        global_step=it)
 
                     if self.viz is not None:
                         self.viz.update("train", it, res)
