@@ -64,6 +64,7 @@ def parse_args():
         help="Name for run in tensorboard_logger",
     )
     parser.add_argument("--visdom-port", type=int, default=8097)
+    parser.add_argument("--visdom_server", type=str, default="http://deepdriver01.flatns.net")
     parser.add_argument("--visdom", action="store_true")
 
     return parser.parse_args()
@@ -143,7 +144,8 @@ if __name__ == "__main__":
     model_fn = model_fn_decorator(nn.CrossEntropyLoss())
 
     if args.visdom:
-        viz = pt_utils.VisdomViz(port=args.visdom_port)
+        viz = pt_utils.VisdomViz(server=args.visdom_server,
+                                 port=args.visdom_port)
     else:
         viz = pt_utils.CmdLineViz()
 
