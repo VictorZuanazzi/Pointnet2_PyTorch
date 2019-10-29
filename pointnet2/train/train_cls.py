@@ -144,9 +144,11 @@ if __name__ == "__main__":
     model_fn = model_fn_decorator(nn.CrossEntropyLoss())
 
     if args.visdom:
+        print(f"before: {args.visdom_server}")
         if "http://" not in args.visdom_server:
             args.visdom_server = "http://" + args.visdom_server
-            
+        print(f"after: {args.visdom_server}")
+
         viz = pt_utils.VisdomViz(server=args.visdom_server,
                                  port=args.visdom_port)
     else:
