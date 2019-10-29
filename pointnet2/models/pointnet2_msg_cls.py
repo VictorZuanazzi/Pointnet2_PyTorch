@@ -7,7 +7,8 @@ from __future__ import (
 )
 import torch
 import torch.nn as nn
-import etw_pytorch_utils.etw_pytorch_utils.seq as pt_utils
+# import etw_pytorch_utils.etw_pytorch_utils.seq as pt_utils
+import utils as pt_utils
 from collections import namedtuple
 
 from pointnet2.utils.pointnet2_modules import PointnetSAModuleMSG, PointnetSAModule
