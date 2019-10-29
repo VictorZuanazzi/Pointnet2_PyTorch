@@ -11,7 +11,7 @@ import torch.optim.lr_scheduler as lr_sched
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import transforms
-import etw_pytorch_utils as pt_utils
+import etw_pytorch_utils.etw_pytorch_utils as pt_utils
 import pprint
 import os.path as osp
 import os
